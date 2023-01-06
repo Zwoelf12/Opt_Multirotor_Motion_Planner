@@ -1,4 +1,4 @@
-# Opt_Multirotor_Motion_Planner
+# SCP_Multirotor_Motion_Planner
 This repository includes an Optimization-Based Multirotor Motion Planner using Sequential Convex Programming (SCP). As SCP Algorithm SCvx is implemented following [Malyuta et. al. 2021](https://arxiv.org/abs/2106.09125).
 
 Tested on Ubuntu 20.04. with Python 3.9
