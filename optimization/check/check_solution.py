@@ -50,7 +50,6 @@ def check_solution(solution, optProb):
 
     # dynamics
     int_err = []
-    real_traj = [np.array(optProb.x0)]
     T = states.shape[0]
 
     # check with finer stepsize
@@ -78,9 +77,6 @@ def check_solution(solution, optProb):
             err_small_grid[6:10] = quat_diff_small_grid
             int_err_small_grid.append(err_small_grid)
 
-        # calculate real trajectory
-        real_traj.append(robot.step(real_traj[-1], actions[t], t_dil))
-
     # state limits
     for t in range(T):
         if robot.type == "dI" or (robot.nrMotors != 2 and robot.nrMotors != 3):
@@ -107,7 +103,7 @@ def check_solution(solution, optProb):
 
     data = np.hstack((states, actions))
 
-    return success, data, np.array(real_traj), np.array(int_err), np.array(int_err_small_grid), solution.constr_viol
+    return success, data, np.array(int_err), np.array(int_err_small_grid)
 
 def calc_desired_state(robot, state, action, t_dil):
     num_timesteps = int(np.ceil(1/robot.dt))

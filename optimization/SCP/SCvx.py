@@ -4,27 +4,27 @@ import numpy as np
 from jax import jacfwd, jit, config
 config.update("jax_enable_x64", True)
 import time
-from optimization.opt_utils import OptSolution, calc_initial_guess
+from optimization.opt_utils import OptSolution
 
 class SCvx():
   def __init__(self, robot):
 
-    self.useScaling = True
-    self.useHelperVars = True
+    self.useScaling = True # scales decision variables to be in [-1,1]
+    self.useHelperVars = True # not 100% sure what this does but helps for some problems
     self.useQuatNormalization = True
-    self.useEarlyStopping = False
-    self.useAdaptiveWeights = False
+    self.useEarlyStopping = False # solves convex subproblems with a higher convergence threshold and only solves the subproblem fully in the last iteration (only with Gurobi)
+    self.useAdaptiveWeights = False # puts more weight on dynamic feasibilty in the beginning and increases the weight on accelerations only when this is guranteed
     
-    self.solver = "gurobi"
+    self.solver = "ecos"
 
     self.robot = robot
     # inflate robot to avoid corner cutting
     self.robot.arm_length = robot.arm_length
 
     # user defined parameter
-    self.lam = 1e5 # weight 3 slack in cost
+    self.lam = 1e2 # weight for slack in cost
     self.alp = 0.  # weight for time in cost
-    self.bet = 1 # weight for input in cost
+    self.bet = 1e3 # weight for input in cost
     self.gam = 0.  # weight ratio between input and time penalty
     self.adapWeightsFac = 1e1 # determines by how much the slack cost is decreased and the problem cost is increased when slack is in a reasonable range
     self.weightsFac = 1 

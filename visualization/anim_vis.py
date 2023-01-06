@@ -10,9 +10,9 @@ import meshcat
 import meshcat.geometry as g
 import meshcat.transformations as tf
 import matplotlib.animation as animation
-from visualization.geom_visualization import draw_obs
+from visualization.geo_vis import draw_obs
 
-def animate_fM(data,objs):
+def animate_fM_meshcat(data,objs):
 	vis = meshcat.Visualizer()
 	vis.open()
 
@@ -73,7 +73,7 @@ def animate_dI(robot,data,objs,x0,xf):
 	ani = animation.FuncAnimation(fig, update_ani, num_steps, interval=40, blit=False)
 	plt.show()
 
-def animate_dI_V2(data,objs):
+def animate_dI_meshcat(data,objs):
 	vis = meshcat.Visualizer()
 	vis.open()
 

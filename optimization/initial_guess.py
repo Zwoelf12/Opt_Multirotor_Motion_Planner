@@ -2,7 +2,7 @@ import numpy as np
 import scipy.interpolate as si
 import rowan
 
-def calc_initial_guess(robot, timesteps, noise_factor, xf, x0, tf_min, tf_max, ig_type = "lin_interp"):
+def calc_initial_guess(robot, timesteps, noise_factor, xf, x0, tf_min, tf_max, ig_type = "lin_interp", visualize = False):
 
     T = timesteps
 
@@ -30,7 +30,7 @@ def calc_initial_guess(robot, timesteps, noise_factor, xf, x0, tf_min, tf_max, i
 
     elif ig_type == "spline":
         # use spline interpolation
-        initial_x[:, 0:3] += spline_initial_guess(x0, xf, T, n_control_points=5, degree=3, noise_fac= state_range[:6] * noise_factor)
+        initial_x[:, 0:3] += spline_initial_guess(x0[:3], xf[:3], T, n_control_points=5, degree=3, noise_fac= noise_factor) # noise factor is now not depending on the limits anymore
 
 
     if robot.type == "fM":

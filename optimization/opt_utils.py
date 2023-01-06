@@ -59,14 +59,12 @@ def save_opt_output(optProb,
                     prob_name,
                     solution_scvx,
                     data_scvx,
-                    real_traj_scvx,
                     int_error_scvx,
                     int_error_small_dt_scvx):
 
     opt_processData_scvx = Opt_processData()
     opt_processData_scvx.robot = optProb.robot
     opt_processData_scvx.data = data_scvx
-    opt_processData_scvx.real_traj = real_traj_scvx
     opt_processData_scvx.int_err = int_error_scvx
     opt_processData_scvx.int_err_small_dt = int_error_small_dt_scvx
     opt_processData_scvx.obs = optProb.obs
@@ -91,7 +89,7 @@ def save_opt_output(optProb,
             prob_name += "_fM_8m"
 
     # save data
-    path = "./data/"
+    path = "data/"
 
     filename = path + prob_name
 
@@ -104,7 +102,7 @@ def load_object(filename):
 
 def load_opt_output(prob_name,robot_type, nrMotors):
 
-    path = "./data/"
+    path = "data/"
 
     if robot_type == "dI":
         filename_scvx = prob_name + "_" + robot_type + "_scvx"

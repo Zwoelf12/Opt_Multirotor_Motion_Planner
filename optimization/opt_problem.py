@@ -10,7 +10,6 @@ class OptProblem():
         self.x0 = None  # initial state
         self.xf = None  # final state
         self.obs = None  # included obstacles
-        self.algorithm = None # used algorithm
         self.robot = None  # used robot model
         self.par = None # parameter used in algorithm
         self.CHandler = None # Collision handler
