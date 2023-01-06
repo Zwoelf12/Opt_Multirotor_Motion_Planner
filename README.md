@@ -9,7 +9,7 @@ Clone repository:
 ```
 git clone https://github.com/Zwoelf12/Opt_Multirotor_Motion_Planner.git
 ```
-Install python version, pip and numpy:
+Install Python version, pip and numpy:
 ```
 sudo apt-get install python3.9 python3.9-dev python3.9-numpy python3.9-pip python3.9-distutils
 ```
